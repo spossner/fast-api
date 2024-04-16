@@ -1,12 +1,14 @@
-import { Redis } from '@upstash/redis';
+import { Redis } from '@upstash/redis/cloudflare';
 import { Hono } from 'hono';
 import { env } from 'hono/adapter';
+import { cors } from 'hono/cors';
 import { handle } from 'hono/vercel';
 import * as _ from 'lodash';
 
 export const runtime = 'edge';
 
 const app = new Hono().basePath('/api');
+app.use('/*', cors());
 
 type FastApiEnvConfig = {
   UPSTASH_REDIS_REST_URL: string;
@@ -31,7 +33,7 @@ app.get('/search', async (c) => {
     let result: string[] = [];
 
     if (!_.isNil(rank)) {
-      result = (await redis.zrange<string[]>('terms', rank, rank + 500))
+      result = (await redis.zrange<string[]>('terms', rank, rank + 100))
         .filter(
           (e) => e.charAt(e.length - 1) === '*' && e.startsWith(searchText)
         )

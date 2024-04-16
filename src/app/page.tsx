@@ -29,12 +29,15 @@ export default function Home() {
         return;
       }
 
-      const response = await fetch(`/api/search?q=${text}`);
+      // const response = await fetch(`/api/search?q=${text}`);
+      const response = await fetch(
+        `https://fastapi.possner.workers.dev/api/search?q=${text}`
+      );
       if (response.status === 200) {
         const data = await response.json();
         setSearchResult(data);
       }
-    }, 80),
+    }, 200),
     [setSearchResult]
   );
 
