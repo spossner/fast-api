@@ -1,0 +1,7 @@
+name = "fast-api"
+compatibility_date = "2024-04-16"
+
+[vars]
+UPSTASH_REDIS_REST_URL = https://robust-python-50809.upstash.io
+UPSTASH_REDIS_REST_TOKEN = AcZ5ASQgMzJhNmIwODEtY2YwNi00MmRiLTg5NGEtMGRiYTE0Mzc4NWRmMTk4YThlOTBmOTAzNGVlNTljOWE2MDNmOGNiNDZmMjc=
+
